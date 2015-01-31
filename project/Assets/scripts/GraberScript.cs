@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class GraberScript : MonoBehaviour {
 
+	public bool player1;
 	public bool grabbing;
 	public bool wasGrabbing;
 	public float grabRadius = 1;
@@ -21,6 +22,7 @@ public class GraberScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		Debug.Log(Input.GetJoystickNames());
 		transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Horizontal2")*speed,Input.GetAxis("Vertical2")*speed));
 
 		torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("Horizontal2")*speed,-Input.GetAxis("Vertical2")*speed));
@@ -47,7 +49,11 @@ public class GraberScript : MonoBehaviour {
 
 	void Update()
 	{
-		if(Input.GetKey(KeyCode.Space))
+		if(Input.GetKey(KeyCode.JoystickButton0))
+		{
+		Debug.Log("hi");
+		}
+		if((player1&&Input.GetKey(KeyCode.Space)) || !player1 && Input.GetKey(KeyCode.JoystickButton0))
 		{
 			grabbing = true;
 			hand1.collider2D.enabled = true;

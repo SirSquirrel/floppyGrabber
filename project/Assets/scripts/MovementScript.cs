@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class MovementScript : MonoBehaviour {
+
+	public bool player1;
 	public float accel_Force;
 	public float max_speed;
 	public float torque;
