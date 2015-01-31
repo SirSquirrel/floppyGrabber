@@ -5,26 +5,25 @@ using System.Collections.Generic;
 public class GraberScript : MonoBehaviour {
 
 	public bool grabbing;
+	public bool wasGrabbing;
+	public float grabRadius = 1;
 	public float speed = 50;
 	public Queue<int> layerList = new Queue<int>();
 	public Queue<GameObject> grabbedList = new Queue<GameObject>();
+	public GameObject hand1;
+	public GameObject hand2;
+	public GameObject torso;
 	// Use this for initialization
 	void Start () {
-	
+		hand1.collider2D.enabled = false;
+		hand2.collider2D.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Horizontal2")*speed,Input.GetAxis("Vertical2")*speed));
-		if(Input.GetKey(KeyCode.Space))
-		{
-		grabbing = true;
-		}
-		else
-		{
-		grabbing = false;
-		}
-		//transform.parent.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("Horizontal2")*speed,-Input.GetAxis("Vertical2")*speed));
+
+		torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("Horizontal2")*speed,-Input.GetAxis("Vertical2")*speed));
 		if(!grabbing&&grabbedList.Count>0)
 		{
 			for(int i = 0; i<=grabbedList.Count;i++)
@@ -43,23 +42,48 @@ public class GraberScript : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(grabbing)
+
+	}
+
+	void Update()
+	{
+		if(Input.GetKey(KeyCode.Space))
 		{
-		if(collision.gameObject.layer != 10)
-		{
-		layerList.Enqueue(collision.gameObject.layer);
-		//collision.gameObject.transform.parent = transform.parent;
-		grabbedList.Enqueue(collision.gameObject);
-		if(collision.gameObject.layer != 12)
-		{
-		collision.gameObject.layer = gameObject.layer;
+			grabbing = true;
+			hand1.collider2D.enabled = true;
+			hand2.collider2D.enabled = true;
 		}
-		collision.gameObject.AddComponent("DistanceJoint2D");
-		DistanceJoint2D newJoint = collision.gameObject.GetComponent<DistanceJoint2D>();
-		newJoint.connectedBody = rigidbody2D;
-		//collision.gameObject.rigidbody2D.isKinematic = true;
-		//rigidbody2D.mass += collision.gameObject.rigidbody2D.mass;
+		else
+		{
+			grabbing = false;
+			hand1.collider2D.enabled = false;
+			hand2.collider2D.enabled = false;
+			wasGrabbing = false;
 		}
+
+		if(grabbing&&!wasGrabbing)
+		{
+			Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position,grabRadius);
+			foreach (Collider2D collision in collisions)
+			{
+				if(collision.gameObject.layer != LayerMask.NameToLayer("Background")&& collision.gameObject.layer != LayerMask.NameToLayer("Player1") && collision.gameObject.layer != LayerMask.NameToLayer("ground")&&collision.gameObject.layer != LayerMask.NameToLayer("groundCollide"))
+				{
+					layerList.Enqueue(collision.gameObject.layer);
+					//collision.gameObject.transform.parent = transform.parent;
+					grabbedList.Enqueue(collision.gameObject);
+					if(collision.gameObject.layer != 12)
+					{
+						collision.gameObject.layer = gameObject.layer;
+					}
+					collision.gameObject.AddComponent("DistanceJoint2D");
+					DistanceJoint2D newJoint = collision.gameObject.GetComponent<DistanceJoint2D>();
+					newJoint.connectedBody = rigidbody2D;
+					//collision.gameObject.rigidbody2D.isKinematic = true;
+					//rigidbody2D.mass += collision.gameObject.rigidbody2D.mass;
+					wasGrabbing = true;
+				}
+			}
 		}
 	}
+
 }
