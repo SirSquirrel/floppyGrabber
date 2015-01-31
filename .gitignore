@@ -19,3 +19,7 @@ obj/
 *.user
 *.unityproj
 *.booproj
+project/Assembly-CSharp-vs.csproj
+project/Assembly-CSharp.csproj
+project/project-csharp.sln
+project/project.sln
