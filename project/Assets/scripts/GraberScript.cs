@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class GraberScript : MonoBehaviour {
 
 	public bool grabbing;
-	public float speed = 10;
+	public float speed = 50;
 	public Queue<int> layerList = new Queue<int>();
+	public Queue<GameObject> grabbedList = new Queue<GameObject>();
 	// Use this for initialization
 	void Start () {
 	
@@ -24,17 +25,17 @@ public class GraberScript : MonoBehaviour {
 		grabbing = false;
 		}
 		//transform.parent.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("Horizontal2")*speed,-Input.GetAxis("Vertical2")*speed));
-		if(!grabbing&&transform.parent.childCount>1)
+		if(!grabbing&&grabbedList.Count>0)
 		{
-			for(int i = 1; i<=transform.parent.childCount;i++)
+			for(int i = 0; i<=grabbedList.Count;i++)
 			{
-				Transform grabbed = transform.parent.GetChild(i);
+				Transform grabbed = grabbedList.Dequeue().transform;
 				//grabbed.gameObject.rigidbody2D.isKinematic = false;
 				grabbed.gameObject.layer = layerList.Dequeue();
 				DistanceJoint2D newJoint = grabbed.gameObject.GetComponent<DistanceJoint2D>();
 				Component.Destroy(newJoint);
 				//grabbed.gameObject.rigidbody2D.velocity = rigidbody2D.velocity;
-				grabbed.parent = null;
+				//grabbed.parent = null;
 				//rigidbody2D.mass -= grabbed.gameObject.rigidbody2D.mass;
 			}
 		}
@@ -47,7 +48,8 @@ public class GraberScript : MonoBehaviour {
 		if(collision.gameObject.layer != 10)
 		{
 		layerList.Enqueue(collision.gameObject.layer);
-		collision.gameObject.transform.parent = transform.parent;
+		//collision.gameObject.transform.parent = transform.parent;
+		grabbedList.Enqueue(collision.gameObject);
 		collision.gameObject.layer = gameObject.layer;
 		collision.gameObject.AddComponent("DistanceJoint2D");
 		DistanceJoint2D newJoint = collision.gameObject.GetComponent<DistanceJoint2D>();
