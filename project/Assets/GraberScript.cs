@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GraberScript : MonoBehaviour {
 
-	public bool grabbing
+	public bool grabbing;
 	// Use this for initialization
 	void Start () {
 	
