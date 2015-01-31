@@ -22,10 +22,17 @@ public class GraberScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		Debug.Log(Input.GetJoystickNames());
+	if(player1)
+	{
 		transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Horizontal2")*speed,Input.GetAxis("Vertical2")*speed));
-
 		torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("Horizontal2")*speed,-Input.GetAxis("Vertical2")*speed));
+	}
+	
+	if(!player1)
+	{
+			transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("XBox360RightStickHorizontal")*speed,Input.GetAxis("XBox360RightStickVertical")*speed));
+			torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("XBox360RightStickHorizontal")*speed,-Input.GetAxis("XBox360RightStickVertical")*speed));
+	}
 		if(!grabbing&&grabbedList.Count>0)
 		{
 			for(int i = 0; i<=grabbedList.Count;i++)
@@ -49,11 +56,8 @@ public class GraberScript : MonoBehaviour {
 
 	void Update()
 	{
-		if(Input.GetKey(KeyCode.JoystickButton0))
-		{
-		Debug.Log("hi");
-		}
-		if((player1&&Input.GetKey(KeyCode.Space)) || !player1 && Input.GetKey(KeyCode.JoystickButton0))
+		
+		if((player1&&Input.GetKey(KeyCode.Space)) || (!player1 && Input.GetButton("XBox360A")))
 		{
 			grabbing = true;
 			hand1.collider2D.enabled = true;
@@ -72,7 +76,29 @@ public class GraberScript : MonoBehaviour {
 			Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position,grabRadius);
 			foreach (Collider2D collision in collisions)
 			{
-				if(collision.gameObject.layer != LayerMask.NameToLayer("Background")&& collision.gameObject.layer != LayerMask.NameToLayer("Player1") && collision.gameObject.layer != LayerMask.NameToLayer("ground")&&collision.gameObject.layer != LayerMask.NameToLayer("groundCollide"))
+			if(player1)
+			{
+					if(collision.gameObject.layer != LayerMask.NameToLayer("Background")&& collision.gameObject.layer != LayerMask.NameToLayer("Player1") && collision.gameObject.layer != LayerMask.NameToLayer("ground")&&collision.gameObject.layer != LayerMask.NameToLayer("groundCollide"))
+					{
+						layerList.Enqueue(collision.gameObject.layer);
+						//collision.gameObject.transform.parent = transform.parent;
+						grabbedList.Enqueue(collision.gameObject);
+						if(collision.gameObject.layer != 12)
+						{
+							collision.gameObject.layer = gameObject.layer;
+						}
+						collision.gameObject.AddComponent("DistanceJoint2D");
+						DistanceJoint2D newJoint = collision.gameObject.GetComponent<DistanceJoint2D>();
+						newJoint.connectedBody = rigidbody2D;
+						//collision.gameObject.rigidbody2D.isKinematic = true;
+						//rigidbody2D.mass += collision.gameObject.rigidbody2D.mass;
+						wasGrabbing = true;
+					}
+			}
+				
+			if(!player1)
+			{
+				if(collision.gameObject.layer != LayerMask.NameToLayer("Background")&& collision.gameObject.layer != LayerMask.NameToLayer("Player2") && collision.gameObject.layer != LayerMask.NameToLayer("ground")&&collision.gameObject.layer != LayerMask.NameToLayer("groundCollide"))
 				{
 					layerList.Enqueue(collision.gameObject.layer);
 					//collision.gameObject.transform.parent = transform.parent;
@@ -87,6 +113,7 @@ public class GraberScript : MonoBehaviour {
 					//collision.gameObject.rigidbody2D.isKinematic = true;
 					//rigidbody2D.mass += collision.gameObject.rigidbody2D.mass;
 					wasGrabbing = true;
+					}
 				}
 			}
 		}

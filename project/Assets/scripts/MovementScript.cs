@@ -7,6 +7,7 @@ public class MovementScript : MonoBehaviour {
 	public float accel_Force;
 	public float max_speed;
 	public float torque;
+	float speed = 0;
 	// Use this for initialization
 	void Start () {
 	
@@ -14,7 +15,17 @@ public class MovementScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		float speed = Input.GetAxis ("Horizontal") * accel_Force;
+	
+	if(player1)
+	{
+		speed = Input.GetAxis ("Horizontal") * accel_Force;
+	}
+	
+	if(!player1)
+	{
+		speed = Input.GetAxis ("XBox360LeftStickHorizontal") * accel_Force;
+	}
+	
 		Vector2 temp = new Vector2 ((float)speed, (float)0);
 		if(!((speed>0&&rigidbody2D.velocity.x>max_speed)||(speed<0&&rigidbody2D.velocity.x<-max_speed)))
 			rigidbody2D.AddForce (temp);
