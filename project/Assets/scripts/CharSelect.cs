@@ -39,8 +39,8 @@ public class CharSelect : MonoBehaviour {
 		currentBox_p1 = 0;
 		currentBox_p2 = 0;
 
-		selectBox_p1[0] = new Character(
-			p1_selector_1.GetComponent<Sprite>(), whiteT_P1.GetComponent<Sprite>());
+		//selectBox_p1[0] = new Character(
+			//p1_selector_1.GetComponent<Sprite>(), whiteT_P1.GetComponent<Sprite>());
 	}
 	
 	// Update is called once per frame
@@ -50,7 +50,7 @@ public class CharSelect : MonoBehaviour {
 		}
 		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			if (currentBox_p1 == 0) {
-				currentBox_p1 = selectBox.Capacity - 1;
+				currentBox_p1 = selectBox_p1.Length - 1;
 			}
 			else
 			{
