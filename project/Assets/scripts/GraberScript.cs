@@ -103,7 +103,7 @@ public class GraberScript : MonoBehaviour {
 					layerList.Enqueue(collision.gameObject.layer);
 					//collision.gameObject.transform.parent = transform.parent;
 					grabbedList.Enqueue(collision.gameObject);
-					if(collision.gameObject.layer != 12)
+						if(collision.gameObject.layer != 12 || collision.gameObject.layer != 15 )
 					{
 						collision.gameObject.layer = gameObject.layer;
 					}

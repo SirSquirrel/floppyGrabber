@@ -16,6 +16,6 @@ public class DamageControlScript : gettinHit {
 	}
 	void lose()
 	{
-	//to do
+	Application.LoadLevel(0);
 	}
 }
