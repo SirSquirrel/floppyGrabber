@@ -24,14 +24,13 @@ public class babyFling : MonoBehaviour {
 		if(counter >= babyAfterEveryXFrames)
 		{
 			float force = this.rigidbody2D.velocity.magnitude + collision.gameObject.rigidbody2D.velocity.magnitude;
-			print (force);
 			if(force > 1f)
 			{
 			
 				int randomForce = Random.Range(70,400);
 				Transform baby = (Transform)Instantiate (cartoonBaby, transform.position, Quaternion.Euler(0, 0, (72)));
 				baby.rigidbody2D.AddForce(cartoonBaby.transform.right * randomForce * force);
-				baby.rigidbody2D.AddTorque((float)randomForce * 3);
+				//baby.rigidbody2D.AddTorque((float)randomForce * 3);
 				counter = 0;
 			}
 		}
