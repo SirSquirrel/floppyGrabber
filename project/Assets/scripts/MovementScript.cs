@@ -36,7 +36,14 @@ public class MovementScript : MonoBehaviour {
 		}
 		else
 		{
+			if(Mathf.Abs(Input.GetAxis ("XBox360LeftStickHorizontal"))>Mathf.Abs(Input.GetAxis ("MoveHorizontal2P")))
+			{
 			speed = Input.GetAxis ("XBox360LeftStickHorizontal") * accel_Force;
+			}
+			else
+			{
+				speed = Input.GetAxis ("MoveHorizontal2P") * accel_Force;
+			}
 		}
 		Vector2 temp = new Vector2 ((float)speed, (float)0);
 		if(!((speed>0&&rigidbody2D.velocity.x>max_speed)||(speed<0&&rigidbody2D.velocity.x<-max_speed)))
@@ -46,7 +53,7 @@ public class MovementScript : MonoBehaviour {
 			rigidbody2D.AddTorque (-torque);
 		else
 			rigidbody2D.AddTorque (torque);
-
+		
 		setFootSpin (hinge1, speed);
 		if (runCount >= 5)
 						setFootSpin (hinge2, speed);

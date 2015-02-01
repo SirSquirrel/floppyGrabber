@@ -30,8 +30,16 @@ public class GraberScript : MonoBehaviour {
 	
 	if(!player1)
 	{
+		if(Input.GetJoystickNames().Length!=0)
+		{
 			transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("XBox360RightStickHorizontal")*speed,Input.GetAxis("XBox360RightStickVertical")*speed));
 			torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("XBox360RightStickHorizontal")*speed,-Input.GetAxis("XBox360RightStickVertical")*speed));
+		}
+		else
+		{
+				transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("horizontalArms2p")*speed,Input.GetAxis("verticalArms2p")*speed));
+				torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("horizontalArms2p")*speed,-Input.GetAxis("verticalArms2p")*speed));
+		}
 	}
 		if(!grabbing&&grabbedList.Count>0)
 		{
@@ -57,7 +65,7 @@ public class GraberScript : MonoBehaviour {
 	void Update()
 	{
 		
-		if((player1&&Input.GetKey(KeyCode.Space)) || (!player1 && Input.GetButton("XBox360A")))
+		if((player1&&Input.GetKey(KeyCode.Space)) || (!player1 && Input.GetButton("XBox360A")) || (!player1 && Input.GetKey(KeyCode.DownArrow)))
 		{
 			grabbing = true;
 			hand1.collider2D.enabled = true;
