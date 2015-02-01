@@ -96,8 +96,13 @@ public class CharSelect : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Return)) {
+		this.KeyboardBehaviour ();
+		this.GamepadBehaviour ();
+	}
 
+	void KeyboardBehaviour() {
+		if (Input.GetKeyDown(KeyCode.Return)) {
+			
 		}
 		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			this.p1Disable(currentBox_p1);
@@ -121,20 +126,10 @@ public class CharSelect : MonoBehaviour {
 			}
 			this.p1Enable (currentBox_p1);
 		}
-
 	}
 
-	/*
-	 * A method to update the screen after a player has changed 
-	 * their character selection.
-	 */
-	void ScreenRefresh1() {
-		foreach (Character c in selectBox_p1) {
-			c.character.renderer.enabled = false;
-			c.selector.renderer.enabled = false;
-		}
-		selectBox_p1 [currentBox_p1].selector.renderer.enabled = true;
-		selectBox_p1 [currentBox_p1].character.renderer.enabled = true;
+	void GamepadBehaviour() {
+
 	}
 
 	void p1Disable(int cur) {
