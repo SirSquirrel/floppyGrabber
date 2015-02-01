@@ -20,20 +20,20 @@ public class HealthScript : MonoBehaviour {
 	
 	void Awake()
 	{
-	GameObject p1 = GameObject.FindGameObjectWithTag("player1");
-	GameObject p2 = GameObject.FindGameObjectWithTag("player2");
+	//GameObject p1 = GameObject.FindGameObjectWithTag("player1");
+	//GameObject p2 = GameObject.FindGameObjectWithTag("player2");
 	
-	DamageControlScript P1ChestStats = p1.GetComponent<DamageControlScript>();
-		p1Max = P1ChestStats.health;
+	//DamageControlScript P1ChestStats = p1.GetComponent<DamageControlScript>();
+	//	p1Max = P1ChestStats.health;
 		
-	DamageControlScript P2ChestStats = p2.GetComponent<DamageControlScript>();
-		p2Max = P2ChestStats.health;
+	//DamageControlScript P2ChestStats = p2.GetComponent<DamageControlScript>();
+	//	p2Max = P2ChestStats.health;
 	
-	DamageControlScript P1HeadStats = p1.transform.FindChild("face").gameObject.GetComponent<DamageControlScript>();
-		p1MaxHead = P1HeadStats.health;
+	//DamageControlScript P1HeadStats = p1.transform.FindChild("face").gameObject.GetComponent<DamageControlScript>();
+	//	p1MaxHead = P1HeadStats.health;
 		
-	DamageControlScript P2HeadStats = p2.transform.FindChild("face").gameObject.GetComponent<DamageControlScript>();
-		p2MaxHead = P2HeadStats.health;
+	//DamageControlScript P2HeadStats = p2.transform.FindChild("face").gameObject.GetComponent<DamageControlScript>();
+	//	p2MaxHead = P2HeadStats.health;
 	
 	
 	}
