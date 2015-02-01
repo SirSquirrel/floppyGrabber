@@ -27,6 +27,7 @@ public class ItemBreak : MonoBehaviour {
 				int randomForce = Random.Range(70,400);
 				Transform shardPart = (Transform)Instantiate (shard, transform.position, Quaternion.Euler(0, 0, (72*i)));
 				shardPart.rigidbody2D.AddForce(shardPart.transform.right * randomForce * force);
+				shardPart.rigidbody2D.AddTorque((float)randomForce * 3);
 			}
 			Destroy(this.gameObject);
 		}
