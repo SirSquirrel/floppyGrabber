@@ -88,13 +88,13 @@ public class HealthScript : MonoBehaviour {
 	{
 			endTimer = Time.time + 1;
 			ended = true;
-			Object.Instantiate(p1Win, new Vector3(0,0,0), transform.rotation);
+			Object.Instantiate(p2Win, new Vector3(0,0,0), transform.rotation);
 	}
 		if(loser.tag == "player2")
 		{
 			endTimer = Time.time + 1;
 			ended = true;
-			Object.Instantiate(p2Win, new Vector3(0,0,0), transform.rotation);
+			Object.Instantiate(p1Win, new Vector3(0,0,0), transform.rotation);
 		}
 	}
 }
