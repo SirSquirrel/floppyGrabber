@@ -14,7 +14,10 @@ public class DieAfterTime : MonoBehaviour {
 	void FixedUpdate () {
 		frameCounter += 1;
 
-				Destroy(gameObject);
+		if(frameCounter >= frameLife)
+		{
+			Destroy(gameObject);
 		}
-
+	}
+	
 }
