@@ -12,7 +12,6 @@ public class DamageControlScript : gettinHit {
 		renderer.material.color = Color.white;
 	if(health<=0)
 	{
-	lose ();
 	}
 		else if(hitFeedback <= 20)
 		{
@@ -26,11 +25,5 @@ public class DamageControlScript : gettinHit {
 			}
 			hitFeedback ++;
 		}
-	}
-
-
-	void lose()
-	{
-	Application.LoadLevel(0);
 	}
 }
