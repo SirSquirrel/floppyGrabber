@@ -25,17 +25,6 @@ public class gettinHit : MonoBehaviour {
 	HingeJoint2D newJoint = gameObject.GetComponent<HingeJoint2D>();
 	Component.Destroy(newJoint);
 	}
-	if (Random.Range(0f,200f)>= health)
-	{
-		bloodRotation.Rotate((float) 0, (float) bloodLocalRotationYOffset, (float) 0);
-		Transform transform = Object.Instantiate(bloodPrefab, bloodPosition.position, bloodRotation.rotation) as Transform;
-		bloodInstances = GameObject.FindGameObjectsWithTag("blood");
-		if ((bloodInstances).Length >= maxAmountBloodPrefabs)
-		{
-			Destroy(bloodInstances[0]);
-		}
-		}
-	
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision)
@@ -46,6 +35,17 @@ public class gettinHit : MonoBehaviour {
 		if(collision.relativeVelocity.magnitude>1)
 		{
 		health = health - (collision.relativeVelocity.magnitude*collision.gameObject.rigidbody2D.mass*AStats.multiplier);
+		
+				for(float i = 0; i < collision.relativeVelocity.magnitude*collision.gameObject.rigidbody2D.mass*AStats.multiplier;i = i + 5f)
+			{
+				bloodRotation.Rotate((float) 0, (float) bloodLocalRotationYOffset, (float) 0);
+				Transform transform = Object.Instantiate(bloodPrefab, bloodPosition.position, bloodRotation.rotation) as Transform;
+				bloodInstances = GameObject.FindGameObjectsWithTag("blood");
+				if ((bloodInstances).Length >= maxAmountBloodPrefabs)
+				{
+					Destroy(bloodInstances[0]);
+				}
+			}
 		}
 	}
 	}
