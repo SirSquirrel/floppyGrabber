@@ -22,6 +22,9 @@ public class CharSelect : MonoBehaviour {
 
 	int cha_num = 2;
 
+	bool p1selected = false;
+	bool p2selected = false;
+
 	public class Character {
 		
 		public SpriteRenderer selector;
@@ -96,13 +99,27 @@ public class CharSelect : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.KeyboardBehaviour ();
-		this.GamepadBehaviour ();
+		if (!p1selected) {
+			this.KeyboardBehaviour ();
+			this.P1GamepadBehaviour ();
+		} else {
+			if (Input.GetKeyDown(KeyCode.Escape) 
+			    || Input.GetKeyDown(KeyCode.Backspace) 
+			    || Input.GetButtonDown("P1Cancel") )
+				p1selected = false;
+		}
+		if (!p2selected) {
+			this.P2GamepadBehaviour ();
+		} else {
+			if (Input.GetButtonDown("P2Cancel"))
+			    p2selected = false;
+		}
 	}
 
 	void KeyboardBehaviour() {
 		if (Input.GetKeyDown(KeyCode.Return)) {
-			
+			p1selected = true;
+			this.announce(currentBox_p1);
 		}
 		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			this.p1Disable(currentBox_p1);
@@ -130,8 +147,65 @@ public class CharSelect : MonoBehaviour {
 		}
 	}
 
-	void GamepadBehaviour() {
+	void P1GamepadBehaviour() {
+		if (Input.GetButtonDown ("P1Submit")) {
+			p1selected = true;
+			this.announce(currentBox_p1);
+		}
+		if (Input.GetAxis("XBox360LeftStickHorizontal") < -0.9) {
+			this.p1Disabl-0.9
+				currentBox_p1 = selectBox_p1.Length - 1;
+			}
+			else
+			{
+				currentBox_p1--;
+			}
+			this.p1Enable (currentBox_p1);
+			this.p1Sound();
+		}
+		if (Input.GetAxis("XBox360LeftStickHorizontal") > 0.9) {
+			this.p1Disable(currentBox_p1);
+			if (currentBox_p1 == cha_num - 1) {
+				currentBox_p1 = 0;
+			}
+			else
+			{
+				currentBox_p1++;
+			}
+			this.p1Enable (currentBox_p1);
+			this.p1Sound();
+		}
+	}
 
+	void P2GamepadBehaviour() {
+		if (Input.GetButtonDown ("P2Submit")) {
+			p2selected = true;
+			this.announce(currentBox_p2);
+		}
+		if (Input.GetAxis("P2XBox360LeftStickHorizontal") > 0) {
+			this.p2Disable(currentBox_p2);
+			if (currentBox_p2 == 0) {
+				currentBox_p2 = selectBox_p2.Length - 1;
+			}
+			else
+			{
+				currentBox_p2--;
+			}
+			this.p2Enable (currentBox_p2);
+			this.p2Sound();
+		}
+		if (Input.GetAxis("P2XBox360LeftStickHorizontal") < 0) {
+			this.p2Disable(currentBox_p1);
+			if (currentBox_p2 == cha_num - 1) {
+				currentBox_p2 = 0;
+			}
+			else
+			{
+				currentBox_p2++;
+			}
+			this.p2Enable (currentBox_p1);
+			this.p2Sound();
+		}
 	}
 
 	/*
@@ -160,5 +234,14 @@ public class CharSelect : MonoBehaviour {
 	void p1Sound() {
 		AudioSource beep = GameObject.Find ("p1Audio").audio;
 		beep.Play();
+	}
+
+	void p2Sound() {
+		AudioSource beep = GameObject.Find ("p2Audio").audio;
+		beep.Play();
+	}
+
+	void announce(int cha_num) {
+
 	}
 }
