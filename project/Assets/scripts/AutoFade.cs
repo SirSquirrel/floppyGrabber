@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
+﻿
 // AutoFade.cs
 using UnityEngine;
 using System.Collections;
