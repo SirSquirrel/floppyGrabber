@@ -1,0 +1,42 @@
+
+using UnityEngine;
+using System.Collections;
+
+public class BloodBarTest : MonoBehaviour {
+
+public GUISkin theSkin;
+public float bloodValue = 0.0f;
+private float tmpValue;
+private Rect rctBloodBar;
+private Rect rctUpButton;
+private Rect rctDownButton;
+private bool onoff;
+
+// Use this for initialization
+void Start () {
+rctBloodBar = new Rect (20,20,20,200);
+rctUpButton = new Rect (50,20,40,20);
+rctDownButton = new Rect (50,50,40,20);
+tmpValue = bloodValue;
+}
+
+void OnGUI (){
+GUI.skin = theSkin;
+if (GUI.Button (rctUpButton,"HP On")){
+tmpValue = -1.0f;
+}
+if (GUI.Button (rctDownButton,"HP Off")){
+tmpValue += 0.1f;
+}
+if (bloodValue > 0.0f) tmpValue = 0.0f;
+if (bloodValue < -1.0f) tmpValue = -1.0f;
+bloodValue = Mathf.Lerp(bloodValue,tmpValue,0.05f);
+//~ Debug.Log (bloodValue + " " + tmpValue);
+GUI.VerticalScrollbar(rctBloodBar, 1.0f, bloodValue,0.0f, 1.0f,GUI.skin.GetStyle("verticalScrollbar"));
+}
+
+// Update is called once per frame
+void Update () {
+
+}
+}
