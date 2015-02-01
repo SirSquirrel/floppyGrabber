@@ -7,6 +7,9 @@ public class ItemBreak : MonoBehaviour {
 
 	public float shardSpeed = 1f;
 
+	public AudioSource breakSound;
+	public AudioClip sound;
+
 	public float breakParameter = 1f;
 
 	void Start () {
@@ -31,6 +34,8 @@ public class ItemBreak : MonoBehaviour {
 				shardPart.rigidbody2D.AddForce(shardPart.transform.right * randomForce * force * shardSpeed);
 				shardPart.rigidbody2D.AddTorque((float)randomForce / 3);
 			}
+			//breakSound.PlayOneShot(sound, 0.8f);
+			AudioSource.PlayClipAtPoint(sound, transform.position);
 			Destroy(this.gameObject);
 		}
 	}
