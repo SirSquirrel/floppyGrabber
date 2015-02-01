@@ -114,6 +114,7 @@ public class CharSelect : MonoBehaviour {
 				currentBox_p1--;
 			}
 			this.p1Enable (currentBox_p1);
+			this.p1Sound();
 		}
 		if (Input.GetKeyDown (KeyCode.RightArrow)) {
 			this.p1Disable(currentBox_p1);
@@ -125,6 +126,7 @@ public class CharSelect : MonoBehaviour {
 				currentBox_p1++;
 			}
 			this.p1Enable (currentBox_p1);
+			this.p1Sound();
 		}
 	}
 
@@ -132,6 +134,9 @@ public class CharSelect : MonoBehaviour {
 
 	}
 
+	/*
+	 * Turns off selector for P1
+	 */
 	void p1Disable(int cur) {
 		selectBox_p1 [cur].selector.renderer.enabled = false;
 		selectBox_p1 [cur].character.renderer.enabled = false;
@@ -140,5 +145,20 @@ public class CharSelect : MonoBehaviour {
 	void p1Enable(int cur) {
 		selectBox_p1 [cur].selector.renderer.enabled = true;
 		selectBox_p1 [cur].character.renderer.enabled = true;
+	}
+
+	void p2Disable(int cur) {
+		selectBox_p2 [cur].selector.renderer.enabled = false;
+		selectBox_p2 [cur].character.renderer.enabled = false;
+	}
+	
+	void p2Enable(int cur) {
+		selectBox_p2 [cur].selector.renderer.enabled = true;
+		selectBox_p2 [cur].character.renderer.enabled = true;
+	}
+
+	void p1Sound() {
+		AudioSource beep = GameObject.Find ("p1Audio").audio;
+		beep.Play();
 	}
 }
