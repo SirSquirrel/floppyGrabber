@@ -11,6 +11,7 @@ public class charSpawner : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+	
 	//get charSelected
 	if(charselected == 0)
 	{
