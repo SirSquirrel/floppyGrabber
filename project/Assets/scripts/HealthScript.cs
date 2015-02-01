@@ -48,6 +48,6 @@ public class HealthScript : MonoBehaviour {
 		GUI.Box(new Rect(8, 88, P1HeadStats.health/4, 64), (int)P1HeadStats.health + "/" + p1MaxHead);
 		
 		DamageControlScript P2HeadStats = p2.transform.FindChild("face").gameObject.GetComponent<DamageControlScript>();
-		GUI.Box(new Rect(Screen.width - P2ChestStats.health/4, 72, P2HeadStats.health/4, 64), (int)P2HeadStats.health + "/" + p1MaxHead);
+		GUI.Box(new Rect(Screen.width - P2ChestStats.health/4, 88, P2HeadStats.health/4, 64), (int)P2HeadStats.health + "/" + p1MaxHead);
 	}
 }
