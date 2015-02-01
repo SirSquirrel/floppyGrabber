@@ -7,6 +7,8 @@ public class ItemBreak : MonoBehaviour {
 
 	public float shardSpeed = 100f;
 
+	public float breakParameter = 1f;
+
 	void Start () {
 	
 	}
@@ -20,7 +22,7 @@ public class ItemBreak : MonoBehaviour {
 	{
 		float force = this.rigidbody2D.velocity.magnitude + collision.gameObject.rigidbody2D.velocity.magnitude;
 		print (force);
-		if(force > 1f)
+		if(force > breakParameter)
 		{
 			for(int i = 1; i <= 5; i++)
 			{
