@@ -38,12 +38,11 @@ public class gettinHit : MonoBehaviour {
 		
 				for(float i = 0; i < collision.relativeVelocity.magnitude*collision.gameObject.rigidbody2D.mass*AStats.multiplier;i = i + 5f)
 			{
-				bloodRotation.Rotate((float) 0, (float) bloodLocalRotationYOffset, (float) 0);
-				Transform transform = Object.Instantiate(bloodPrefab, bloodPosition.position, bloodRotation.rotation) as Transform;
-				bloodInstances = GameObject.FindGameObjectsWithTag("blood");
-				if ((bloodInstances).Length >= maxAmountBloodPrefabs)
-				{
-					Destroy(bloodInstances[0]);
+				Transform bTransform = Object.Instantiate(bloodPrefab, bloodPosition.position, transform.rotation) as Transform;
+			bloodInstances = GameObject.FindGameObjectsWithTag("blood");
+			if ((bloodInstances).Length >= maxAmountBloodPrefabs)
+			{
+				Destroy(bloodInstances[0]);
 				}
 			}
 		}
