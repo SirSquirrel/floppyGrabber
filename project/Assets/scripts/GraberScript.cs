@@ -24,16 +24,24 @@ public class GraberScript : MonoBehaviour {
 	void FixedUpdate () {
 	if(player1)
 	{
-		transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Horizontal2")*speed,Input.GetAxis("Vertical2")*speed));
-		torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("Horizontal2")*speed,-Input.GetAxis("Vertical2")*speed));
+			if(Input.GetJoystickNames().Length>0)
+			{
+				transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("XBox360RightStickHorizontal")*speed,Input.GetAxis("XBox360RightStickVertical")*speed));
+				torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("XBox360RightStickHorizontal")*speed,-Input.GetAxis("XBox360RightStickVertical")*speed));
+			}
+			else
+			{
+				transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Horizontal2p")*speed,Input.GetAxis("Vertical2")*speed));
+				torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("Horizontal2")*speed,-Input.GetAxis("Vertical2")*speed));
+			}	
 	}
 	
 	if(!player1)
 	{
-		if(Input.GetJoystickNames().Length!=0)
+		if(Input.GetJoystickNames().Length>1)
 		{
-			transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("XBox360RightStickHorizontal")*speed,Input.GetAxis("XBox360RightStickVertical")*speed));
-			torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("XBox360RightStickHorizontal")*speed,-Input.GetAxis("XBox360RightStickVertical")*speed));
+			transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("P2XBox360RightStickHorizontal")*speed,Input.GetAxis("P2XBox360RightStickVertical")*speed));
+			torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("P2XBox360RightStickHorizontal")*speed,-Input.GetAxis("P2XBox360RightStickVertical")*speed));
 		}
 		else
 		{
@@ -65,7 +73,7 @@ public class GraberScript : MonoBehaviour {
 	void Update()
 	{
 		
-		if((player1&&Input.GetKey(KeyCode.Space)) || (!player1 && Input.GetButton("XBox360A")) || (!player1 && Input.GetKey(KeyCode.DownArrow)))
+		if((player1&&Input.GetKey(KeyCode.Space))|| (player1 && Input.GetButton("XBox360Grab"))|| (!player1 && Input.GetButton("P2XBox360Grab")) || (!player1 && Input.GetKey(KeyCode.DownArrow)))
 		{
 			grabbing = true;
 			hand1.collider2D.enabled = true;
@@ -91,8 +99,17 @@ public class GraberScript : MonoBehaviour {
 						layerList.Enqueue(collision.gameObject.layer);
 						//collision.gameObject.transform.parent = transform.parent;
 						grabbedList.Enqueue(collision.gameObject);
+						GameObject blade = null;
+						if(collision.gameObject.name.Equals("sword"))
+						{
+							blade = collision.gameObject.transform.FindChild("blade").gameObject;
+							if(blade!=null)
+								grabbedList.Enqueue(blade);
+						}
 						if(collision.gameObject.layer != 12 && collision.gameObject.layer != 13)
 						{
+							if(blade!=null)
+								blade.layer = gameObject.layer;
 							collision.gameObject.layer = gameObject.layer;
 						}
 						collision.gameObject.AddComponent("DistanceJoint2D");

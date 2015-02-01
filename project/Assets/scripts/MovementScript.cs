@@ -32,13 +32,21 @@ public class MovementScript : MonoBehaviour {
 		float speed;
 		if(player1)
 		{
-			speed = Input.GetAxis ("Horizontal") * accel_Force;
+
+			if(Mathf.Abs(Input.GetAxis ("XBox360LeftStickHorizontal"))>Mathf.Abs(Input.GetAxis ("Horizontal")))
+			{
+				speed = Input.GetAxis ("XBox360LeftStickHorizontal") * accel_Force;
+			}
+			else
+			{
+				speed = Input.GetAxis ("Horizontal") * accel_Force;
+			}
 		}
 		else
 		{
-			if(Mathf.Abs(Input.GetAxis ("XBox360LeftStickHorizontal"))>Mathf.Abs(Input.GetAxis ("MoveHorizontal2P")))
+			if(Mathf.Abs(Input.GetAxis ("P2XBox360LeftStickHorizontal"))>Mathf.Abs(Input.GetAxis ("MoveHorizontal2P")))
 			{
-			speed = Input.GetAxis ("XBox360LeftStickHorizontal") * accel_Force;
+			speed = Input.GetAxis ("P2XBox360LeftStickHorizontal") * accel_Force;
 			}
 			else
 			{
