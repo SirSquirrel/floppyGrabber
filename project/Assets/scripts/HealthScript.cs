@@ -34,7 +34,7 @@ public class HealthScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void OnGUI() {
 		GameObject p1 = GameObject.FindGameObjectWithTag("player1");
 		GameObject p2 = GameObject.FindGameObjectWithTag("player1");
 		
