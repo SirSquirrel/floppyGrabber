@@ -48,7 +48,6 @@ public class gettinHit : MonoBehaviour {
 		if(!ignoredLayers.Contains(collision.gameObject.layer))
 		{
 			hittinStuff AStats = collision.gameObject.GetComponent<hittinStuff>();
-			Debug.Log (collision.relativeVelocity.magnitude);
 			if(collision.relativeVelocity.magnitude>minHitMagnitude)
 			{
 				health = health - (collision.relativeVelocity.magnitude*collision.gameObject.rigidbody2D.mass*AStats.multiplier);
