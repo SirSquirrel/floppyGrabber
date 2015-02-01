@@ -78,12 +78,15 @@ public class HealthScript : MonoBehaviour {
 	void FixedUpdate () {
 		if(ended == true && Time.time>endTimer)
 		{
+			Destroy (GameObject.Find("BackgroundMusic"));
 			Application.LoadLevel(0);
+			
 		}
 	}
 	
 	public void lose(GameObject loser)
 	{
+	
 	if(loser.tag == "player1")
 	{
 			endTimer = Time.time + 1;
