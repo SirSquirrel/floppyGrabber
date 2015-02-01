@@ -11,7 +11,7 @@ public class MainMenuUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.anyKeyDown) {
-			AutoFade.LoadLevel ("CharSelect", 3, 1, Color.black);
+			AutoFade.LoadLevel ("LevelSelect", 3, 1, Color.black);
 		}
 	}
 

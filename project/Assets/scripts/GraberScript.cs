@@ -31,7 +31,7 @@ public class GraberScript : MonoBehaviour {
 			}
 			else
 			{
-				transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Horizontal2p")*speed,Input.GetAxis("Vertical2")*speed));
+				transform.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Horizontal2")*speed,Input.GetAxis("Vertical2")*speed));
 				torso.rigidbody2D.AddForce(new Vector2(-Input.GetAxis("Horizontal2")*speed,-Input.GetAxis("Vertical2")*speed));
 			}	
 	}

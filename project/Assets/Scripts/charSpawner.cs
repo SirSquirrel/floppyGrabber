@@ -11,6 +11,20 @@ public class charSpawner : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+	GameObject controller = GameObject.Find("BackgroundMusic");
+	if (controller!=null)
+	{
+	GameController GStats = controller.GetComponent<GameController>();
+		if(gameObject.layer == 8)
+		{
+		charselected = GStats.p1Character;
+		}
+		
+		if(gameObject.layer == 9)
+		{
+			charselected = GStats.p2Character;
+		}
+	}
 	
 	//get charSelected
 	if(charselected == 0)
