@@ -6,6 +6,12 @@ public class gettinHit : MonoBehaviour {
 
 	public float health = 100;
 	public List<int> ignoredLayers;
+	public Transform bloodPrefab;
+	public int maxAmountBloodPrefabs = 20;
+	private GameObject[] bloodInstances;
+	public Transform bloodPosition;
+	public Transform bloodRotation;
+	public int bloodLocalRotationYOffset;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,15 +22,20 @@ public class gettinHit : MonoBehaviour {
 	if(health<=0)
 	{
 	transform.parent = null;
-	if(transform.childCount>0)
-	{
-		Transform chil = transform.GetChild(0);
-		HingeJoint2D childJoint = chil.GetComponent<HingeJoint2D>();
-		Component.Destroy(childJoint);
-	}
 	HingeJoint2D newJoint = gameObject.GetComponent<HingeJoint2D>();
 	Component.Destroy(newJoint);
 	}
+	if (Random.Range(0f,200f)>= health)
+	{
+		bloodRotation.Rotate((float) 0, (float) bloodLocalRotationYOffset, (float) 0);
+		Transform transform = Object.Instantiate(bloodPrefab, bloodPosition.position, bloodRotation.rotation) as Transform;
+		bloodInstances = GameObject.FindGameObjectsWithTag("blood");
+		if ((bloodInstances).Length >= maxAmountBloodPrefabs)
+		{
+			Destroy(bloodInstances[0]);
+		}
+		}
+	
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision)
