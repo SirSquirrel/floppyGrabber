@@ -1,0 +1,121 @@
+using UnityEngine;  
+using System.Collections;  
+  
+/// <summary>  
+/// 回调方法  
+/// </summary>  
+public delegate void CallBack();  
+  
+/// <summary>  
+/// 玩家血量  
+/// </summary>  
+public class PlayerHealth : MonoBehaviour {  
+    /// <summary>  
+    /// 血量Sprite  
+    /// </summary>  
+    public UISprite HPSripte;  
+    /// <summary>  
+    /// 血量值  
+    /// </summary>  
+    public UILabel HPLabel;  
+    /// <summary>  
+    /// 魔法值Sprite  
+    /// </summary>  
+    public UISprite MPSprite;  
+    /// <summary>  
+    /// 魔法值  
+    /// </summary>  
+    public UILabel MPLabel;  
+  
+    private int _MaxHP;  
+    /// <summary>  
+    /// 血量的最大值  
+    /// </summary>  
+    public int MaxHP  
+    {  
+        get { return _MaxHP; }  
+        set  
+        {  
+            if (value <= 0)  
+                _MaxHP = 1;  
+            else  
+                _MaxHP = value;  
+            UpdateCurrentHP(_MaxHP);  
+        }  
+    }  
+  
+    private int _MaxMP;  
+    /// <summary>  
+    /// 最大的魔法值  
+    /// </summary>  
+    public int MaxMP  
+    {  
+        get { return _MaxMP; }  
+        set  
+        {  
+            if (value <= 0)  
+                _MaxMP = 1;  
+            else  
+                _MaxMP = value;  
+        }  
+    }  
+  
+    /// <summary>  
+    /// 死亡的委托  
+    /// </summary>  
+    public CallBack deathDelegate;  
+ 
+    #region 更新当前的血量  
+    /// <summary>  
+    /// 更新当前的血量  
+    /// </summary>  
+    /// <param name="temp">改变值</param>  
+    public void UpdateCurrentHP(int temp)  
+    {  
+        if (HPLabel != null && MPSprite != null)  
+        {  
+            string[] _hp = HPLabel.text.Trim().Split('/');  
+            int hp = int.Parse(_hp[0]) + temp;  
+            //进行hp数据安全性检查  
+            if (hp > _MaxHP)  
+                hp = _MaxHP;  
+            if (hp < 0)  
+            {  
+                //触发死亡操作  
+                deathDelegate();  
+                hp = 0;  
+            }  
+            HPLabel.text = hp + "/" + _MaxHP;  
+            float fill = (float)hp / _MaxHP;  
+            HPSripte.fillAmount = fill;  
+        }  
+        else  
+            Debug.LogWarning("PlayerHealth类里的HPLabel 或者 HPSprite不得为空");  
+    }   
+    #endregion  
+ 
+    #region 更新当前魔法值  
+    /// <summary>  
+    /// 更新魔法值  
+    /// </summary>  
+    /// <param name="temp">模仿值的改变量</param>  
+    public void UpdateCurrentMP(int temp)  
+    {  
+        if (MPLabel != null && MPSprite != null)  
+        {  
+            string[] _mp = MPLabel.text.Trim().Split('/');  
+            int mp = int.Parse(_mp[0]) + temp;  
+            //对mp进行安全性检查  
+            if (mp > _MaxMP)  
+                mp = _MaxMP;  
+            if (mp < 0)  
+                mp = 0;  
+            MPLabel.text = mp + "/" + _MaxMP;  
+            float fill = (float)mp / _MaxMP;  
+            MPSprite.fillAmount = fill;  
+        }  
+        else  
+            Debug.LogWarning("PlayerHealth类里的MPLabel 或者 MPSprite不得为空");  
+    }   
+    #endregion  
+  
