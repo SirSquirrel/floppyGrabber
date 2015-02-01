@@ -25,6 +25,9 @@ public class CharSelect : MonoBehaviour {
 	bool p1selected = false;
 	bool p2selected = false;
 
+	bool p1moving = false;
+	bool p2moving = false;
+
 	public class Character {
 		
 		public SpriteRenderer selector;
@@ -101,7 +104,7 @@ public class CharSelect : MonoBehaviour {
 	void Update () {
 		if (!p1selected) {
 			this.KeyboardBehaviour ();
-			this.P1GamepadBehaviour ();
+			this.P2GamepadBehaviour ();
 		} else {
 			if (Input.GetKeyDown(KeyCode.Escape) 
 			    || Input.GetKeyDown(KeyCode.Backspace) 
@@ -109,10 +112,17 @@ public class CharSelect : MonoBehaviour {
 				p1selected = false;
 		}
 		if (!p2selected) {
-			this.P2GamepadBehaviour ();
+			this.P1GamepadBehaviour ();
 		} else {
 			if (Input.GetButtonDown("P2Cancel"))
 			    p2selected = false;
+		}
+
+		/*
+		 * If we're here then we're ready to proceed.
+		 */
+		if (p1selected && p2selected) {
+			AutoFade.LoadLevel ("LevelSelect", 3, 1, Color.black);
 		}
 	}
 
@@ -148,12 +158,13 @@ public class CharSelect : MonoBehaviour {
 	}
 
 	void P1GamepadBehaviour() {
-		if (Input.GetButtonDown ("P1Submit")) {
+		if (Input.GetButtonDown ("P2Submit")) {
 			p1selected = true;
 			this.announce(currentBox_p1);
 		}
-		if (Input.GetAxis("XBox360LeftStickHorizontal") < -0.9) {
-			this.p1Disabl-0.9
+		if (Input.GetAxis("P2XBox360LeftStickHorizontal") > 0.9) {
+			this.p1Disable(currentBox_p1);
+			if (currentBox_p1 == 0) {
 				currentBox_p1 = selectBox_p1.Length - 1;
 			}
 			else
@@ -163,7 +174,7 @@ public class CharSelect : MonoBehaviour {
 			this.p1Enable (currentBox_p1);
 			this.p1Sound();
 		}
-		if (Input.GetAxis("XBox360LeftStickHorizontal") > 0.9) {
+		if (Input.GetAxis("P2XBox360LeftStickHorizontal") < -0.9) {
 			this.p1Disable(currentBox_p1);
 			if (currentBox_p1 == cha_num - 1) {
 				currentBox_p1 = 0;
@@ -178,11 +189,11 @@ public class CharSelect : MonoBehaviour {
 	}
 
 	void P2GamepadBehaviour() {
-		if (Input.GetButtonDown ("P2Submit")) {
+		if (Input.GetButtonDown ("P1Submit")) {
 			p2selected = true;
 			this.announce(currentBox_p2);
 		}
-		if (Input.GetAxis("P2XBox360LeftStickHorizontal") > 0) {
+		if (Input.GetAxis("XBox360LeftStickHorizontal") > 0.9) {
 			this.p2Disable(currentBox_p2);
 			if (currentBox_p2 == 0) {
 				currentBox_p2 = selectBox_p2.Length - 1;
@@ -194,7 +205,7 @@ public class CharSelect : MonoBehaviour {
 			this.p2Enable (currentBox_p2);
 			this.p2Sound();
 		}
-		if (Input.GetAxis("P2XBox360LeftStickHorizontal") < 0) {
+		if (Input.GetAxis("XBox360LeftStickHorizontal") < -0.9) {
 			this.p2Disable(currentBox_p1);
 			if (currentBox_p2 == cha_num - 1) {
 				currentBox_p2 = 0;
