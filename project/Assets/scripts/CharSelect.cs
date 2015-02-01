@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CharSelect : MonoBehaviour {
 
-	ArrayList<int> selectBox;
+	ArrayList selectBox;
 	int currentBox;
 
 	// Use this for initialization
