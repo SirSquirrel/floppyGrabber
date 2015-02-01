@@ -22,14 +22,14 @@ public class DieUnder : MonoBehaviour {
 		{
 			endTimer = Time.time + 1;
 			ended = true;
-			Object.Instantiate(p1Win, new Vector3(0,0,0), transform.rotation);
+			Object.Instantiate(p2Win, new Vector3(0,0,0), transform.rotation);
 		}
 		
 		else if(p2.transform.position.y<transform.position.y && ended == false)
 		{
 			endTimer = Time.time + 1;
 			ended = true;
-			Object.Instantiate(p2Win, new Vector3(0,0,0), transform.rotation);
+			Object.Instantiate(p1Win, new Vector3(0,0,0), transform.rotation);
 		}
 		
 		if(ended == true && Time.time>endTimer)
