@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class gettinHit : MonoBehaviour {
 
+	public AudioClip breakBone;
+	public AudioClip oww;
+	
+	private bool broken = false;
 	public float health = 100;
 	public List<int> ignoredLayers;
 	public Transform bloodPrefab;
@@ -22,8 +26,10 @@ public class gettinHit : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		renderer.material.color = Color.white;
-	if(health<=0)
+	if(health<=0&&broken == false)
 	{
+	broken = true;
+	AudioSource.PlayClipAtPoint(breakBone, transform.position);
 	transform.parent = null;
 	HingeJoint2D newJoint = gameObject.GetComponent<HingeJoint2D>();
 	Component.Destroy(newJoint);
@@ -50,11 +56,12 @@ public class gettinHit : MonoBehaviour {
 			hittinStuff AStats = collision.gameObject.GetComponent<hittinStuff>();
 			if(collision.relativeVelocity.magnitude>minHitMagnitude)
 			{
-				health = health - (collision.relativeVelocity.magnitude*collision.gameObject.rigidbody2D.mass*AStats.multiplier);
+				AudioSource.PlayClipAtPoint(oww, transform.position);
+				health = health - ((collision.relativeVelocity.magnitude*collision.gameObject.rigidbody2D.mass)*AStats.multiplier);
 				hitFeedback = 0;
 				for(float i = 0; i < collision.relativeVelocity.magnitude*collision.gameObject.rigidbody2D.mass*AStats.multiplier;i = i + 5f)
 				{
-					Transform bTransform = Object.Instantiate(bloodPrefab, bloodPosition.position, transform.rotation) as Transform;
+					Object.Instantiate(bloodPrefab, bloodPosition.position, transform.rotation);
 					bloodInstances = GameObject.FindGameObjectsWithTag("blood");
 					if ((bloodInstances).Length >= maxAmountBloodPrefabs)
 					{
