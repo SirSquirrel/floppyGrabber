@@ -2,19 +2,31 @@ Initialize engine version: 4.6.0f3 (30840d631a27)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA GeForce GTX 970M  (ID=0x13d8)
+    Renderer: NVIDIA GeForce GTX 560M (ID=0x1251)
     Vendor:   NVIDIA
-    VRAM:     2930 MB
+    VRAM:     3019 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: D:\Gamejam\floppyGrabberMain\project\grabberSelect_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading D:\Gamejam\floppyGrabberMain\project\grabberSelect_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: D:\Gamejam\floppyGrabberMain\project\grabberSelect_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading D:\Gamejam\floppyGrabberMain\project\grabberSelect_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: D:\Gamejam\floppyGrabberMain\project\grabberSelect_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading D:\Gamejam\floppyGrabberMain\project\grabberSelect_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.039 seconds
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\project\grabberSelect_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Administrator\game\floppyGrabber\project\grabberSelect_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\project\grabberSelect_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Administrator\game\floppyGrabber\project\grabberSelect_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\project\grabberSelect_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Administrator\game\floppyGrabber\project\grabberSelect_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.059 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Platform assembly: D:\Gamejam\floppyGrabberMain\project\grabberSelect_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: D:\Gamejam\floppyGrabberMain\project\grabberSelect_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\project\grabberSelect_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\project\grabberSelect_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 2.044880 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 170.
+Total: 0.865674 ms (FindLiveObjects: 0.007697 ms CreateObjectMapping: 0.008210 ms MarkObjects: 0.073379 ms  DeleteObjects: 0.121102 ms)
+
+UnloadTime: 0.404870 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1096.
+Total: 0.923146 ms (FindLiveObjects: 0.040025 ms CreateObjectMapping: 0.017960 ms MarkObjects: 0.188324 ms  DeleteObjects: 0.016420 ms)
+

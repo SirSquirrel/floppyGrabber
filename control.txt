@@ -1,0 +1,8 @@
+wasd(move)
+space(grab)
+jikl(move arms)
+
+play2
+(deriction arrow keys) move
+deriction down key (grab)
+486(move arms)

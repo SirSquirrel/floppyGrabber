@@ -2,27 +2,27 @@ Initialize engine version: 4.6.2f1 (bd99309c2ad7)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: Intel(R) HD Graphics Family (ID=0xa16)
-    Vendor:   Intel
-    VRAM:     896 MB
+    Renderer: NVIDIA GeForce GTX 560M (ID=0x1251)
+    Vendor:   NVIDIA
+    VRAM:     3019 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\Ortin\Documents\GameJam\floppyGrabber\floppygrabber_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\Ortin\Documents\GameJam\floppyGrabber\floppygrabber_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\Ortin\Documents\GameJam\floppyGrabber\floppygrabber_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\Ortin\Documents\GameJam\floppyGrabber\floppygrabber_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\Ortin\Documents\GameJam\floppyGrabber\floppygrabber_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\Ortin\Documents\GameJam\floppyGrabber\floppygrabber_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.160 seconds
-desktop: 1366x768 60Hz; virtual: 3046x1050 at 0,-282
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\floppygrabber_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Administrator\game\floppyGrabber\floppygrabber_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\floppygrabber_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Administrator\game\floppyGrabber\floppygrabber_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\floppygrabber_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Administrator\game\floppyGrabber\floppygrabber_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.062 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Platform assembly: C:\Users\Ortin\Documents\GameJam\floppyGrabber\floppygrabber_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\Ortin\Documents\GameJam\floppyGrabber\floppygrabber_Data\Managed\System.dll (this message is harmless)
-UnloadTime: 9.400449 ms
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\floppygrabber_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Administrator\game\floppyGrabber\floppygrabber_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 10.009395 ms
 System memory in use before: 9.6 MB.
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 System memory in use after: 9.5 MB.
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 125.
-Total: 2.365507 ms (FindLiveObjects: 0.032951 ms CreateObjectMapping: 0.022688 ms MarkObjects: 0.216077 ms  DeleteObjects: 0.035112 ms)
+Total: 3.383161 ms (FindLiveObjects: 0.026683 ms CreateObjectMapping: 0.024630 ms MarkObjects: 0.210902 ms  DeleteObjects: 0.037972 ms)
 
